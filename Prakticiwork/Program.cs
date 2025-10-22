@@ -14,19 +14,6 @@ public class Student : Person
     }
 }
 
-// Проверка доступа
-public class TestInheritance
-{
-    public static void Test()
-    {
-        Student student = new Student();
-        student.Name = "Алиса";     // Доступ к полю базового класса
-        student.Age = 20;           // Доступ к полю базового класса
-        student.Grade = "A";        // Доступ к собственному полю
-        student.DisplayInfo();
-    }
-}
-
 public class Vehicle
 {
     public virtual void Move()
@@ -61,20 +48,6 @@ public class Bicycle : Vehicle
     }
 }
 
-public class TestVehicles
-{
-    public static void Test()
-    {
-        Vehicle car = new Car();
-        Vehicle bicycle = new Bicycle();
-
-        car.Move();        // Автомобиль едет по дороге
-        bicycle.Move();    // Велосипед крутит педали
-
-        ((Car)car).Honk(); // Автомобиль сигналит
-    }
-}
-
 public class Animal
 {
     public virtual void MakeSound()
@@ -99,18 +72,6 @@ public class Cat : Animal
     }
 }
 
-public class TestAnimals
-{
-    public static void Test()
-    {
-        Animal dog = new Dog();
-        Animal cat = new Cat();
-
-        dog.MakeSound(); // Собака лает: Гав! Гав!
-        cat.MakeSound(); // Кошка мяукает: Мяу! Мяу!
-    }
-}
-
 public class Employee
 {
     public string Name { get; set; }
@@ -130,15 +91,6 @@ public class Manager : Employee
     {
         Department = department;
         Console.WriteLine($"Конструктор Manager: {name}, {department}");
-    }
-}
-
-public class TestConstructors
-{
-    public static void Test()
-    {
-        Manager manager = new Manager("Иван Петров", "ИТ");
-        Console.WriteLine($"Менеджер: {manager.Name}, Отдел: {manager.Department}");
     }
 }
 
@@ -177,17 +129,6 @@ public class SavingsAccount : BankAccount
         decimal interest = balance * rate / 100;
         balance += interest; // Доступ к защищённому полю
         Console.WriteLine($"Начислены проценты: {interest}, Новый баланс: {balance}");
-    }
-}
-
-public class TestBankAccount
-{
-    public static void Test()
-    {
-        SavingsAccount account = new SavingsAccount(1000);
-        account.Deposit(500);
-        account.AddInterest(5);
-        Console.WriteLine($"Итоговый баланс: {account.GetBalance()}");
     }
 }
 
@@ -233,25 +174,6 @@ public class Laptop : Computer
     public void CloseLid()
     {
         Console.WriteLine("Крышка ноутбука закрывается, переход в спящий режим");
-    }
-}
-
-public class TestMultipleInheritance
-{
-    public static void Test()
-    {
-        Laptop laptop = new Laptop
-        {
-            Brand = "Dell",
-            Processor = "Intel i7",
-            BatteryLife = 8
-        };
-
-        // Вызов методов с разных уровней наследования
-        laptop.DisplayBrand();  // Из Device
-        laptop.TurnOn();        // Из Laptop (переопределён)
-        laptop.RunProgram();    // Из Computer
-        laptop.CloseLid();      // Из Laptop
     }
 }
 
@@ -336,82 +258,5 @@ public class SchoolClass
         Console.WriteLine($"Всего людей: {people.Count}");
         Console.WriteLine($"Учителей: {teachers}");
         Console.WriteLine($"Студентов: {students}");
-    }
-}
-
-public class TestSchoolSystem
-{
-    public static void Test()
-    {
-        // Создаем объекты разных типов
-        Teacher mathTeacher = new Teacher("Иван Иванов", 45, "Математика");
-        Teacher scienceTeacher = new Teacher("Петр Петров", 38, "Физика");
-
-        Student1 student1 = new Student1("Анна Смирнова", 15, "10А");
-        Student1 student2 = new Student1("Борис Орлов", 16, "10Б");
-        Student1 student3 = new Student1("Светлана Ковалева", 15, "10А");
-
-        // Создаем класс и добавляем людей
-        SchoolClass mathClass = new SchoolClass("Математический класс");
-        mathClass.AddPerson(mathTeacher);
-        mathClass.AddPerson(student1);
-        mathClass.AddPerson(student2);
-        mathClass.AddPerson(student3);
-
-        // Демонстрация полиморфизма
-        SchoolClass scienceClass = new SchoolClass("Физический класс");
-        scienceClass.AddPerson(scienceTeacher);
-        scienceClass.AddPerson(student1);
-
-        // Вывод информации
-        mathClass.DisplayAllInfo();
-        scienceClass.DisplayAllInfo();
-
-        // Статистика
-        mathClass.DisplayStatistics();
-        scienceClass.DisplayStatistics();
-
-        // Дополнительная демонстрация полиморфизма
-        Console.WriteLine("\n--- Индивидуальная информация ---");
-        Person1[] people = new Person1[]
-        {
-            mathTeacher,
-            scienceTeacher,
-            student1,
-            student2,
-            student3
-        };
-
-        foreach (var person in people)
-        {
-            person.GetInfo(); // Один метод, разное поведение
-        }
-    }
-}
-
-class Program
-{
-    static void Main(string[] args)
-    {
-        Console.WriteLine("=== 1. Простейшее наследование ===");
-        TestInheritance.Test();
-
-        Console.WriteLine("\n=== 2. Методы базового класса ===");
-        TestVehicles.Test();
-
-        Console.WriteLine("\n=== 3. Переопределение методов ===");
-        TestAnimals.Test();
-
-        Console.WriteLine("\n=== 4. Конструкторы в наследовании ===");
-        TestConstructors.Test();
-
-        Console.WriteLine("\n=== 5. Доступ к защищённым членам ===");
-        TestBankAccount.Test();
-
-        Console.WriteLine("\n=== 6. Множественный уровень наследования ===");
-        TestMultipleInheritance.Test();
-
-        Console.WriteLine("\n=== 7. Расширенное задание: Система «Школа» ===");
-        TestSchoolSystem.Test();
     }
 }

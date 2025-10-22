@@ -61,32 +61,6 @@ public class Cat : IAnimal
     }
 }
 
-public class TestSimpleInterface
-{
-    public static void Test()
-    {
-        Console.WriteLine("=== Простейший интерфейс ===");
-
-        IAnimal dog = new Dog("Buddy", "Golden Retriever");
-        IAnimal cat = new Cat("Whiskers", "Gray");
-
-        // Работа через интерфейс
-        IAnimal[] animals = { dog, cat };
-
-        foreach (var animal in animals)
-        {
-            Console.WriteLine($"\n--- {animal.Name} ---");
-            animal.Eat();
-            animal.MakeSound();
-        }
-
-        // Дополнительные методы конкретных классов
-        ((Dog)dog).Fetch();
-        ((Cat)cat).ClimbTree();
-    }
-}
-
-
 public interface IDevice
 {
     void TurnOn();
@@ -225,36 +199,6 @@ public class TV : IDevice
     }
 }
 
-public class TestDeviceInterface
-{
-    public static void Test()
-    {
-        Console.WriteLine("\n=== Интерфейс «Устройство» ===");
-
-        IDevice computer = new Computer("Dell", "XPS 15", "Windows 11");
-        IDevice tv = new TV("Samsung", "QLED 4K");
-
-        // Работа через интерфейс
-        IDevice[] devices = { computer, tv };
-
-        foreach (var device in devices)
-        {
-            Console.WriteLine($"\n--- {device.Brand} {device.Model} ---");
-            device.TurnOn();
-            Console.WriteLine($"Is on: {device.IsOn}");
-            device.TurnOff();
-        }
-
-        // Дополнительные методы
-        computer.TurnOn();
-        ((Computer)computer).RunProgram("Visual Studio");
-
-        tv.TurnOn();
-        ((TV)tv).ChangeChannel(5);
-        ((TV)tv).SetVolume(30);
-    }
-}
-
 public interface IMovable
 {
     double Speed { get; set; }
@@ -332,34 +276,6 @@ public class Bicycle : IMovable
     }
 }
 
-public class TestMovableInterface
-{
-    public static void Test()
-    {
-        Console.WriteLine("\n=== Интерфейс с свойствами ===");
-
-        IMovable car = new Car("Toyota Camry");
-        IMovable bicycle = new Bicycle("Mountain");
-
-        // Работа через интерфейс
-        IMovable[] movables = { car, bicycle };
-
-        foreach (var movable in movables)
-        {
-            Console.WriteLine($"\n--- {movable.GetType().Name} ---");
-            Console.WriteLine($"Movement type: {movable.MovementType}");
-            movable.Move();
-            Console.WriteLine($"Current speed: {movable.Speed} km/h");
-            movable.Stop();
-        }
-
-        // Дополнительные методы
-        ((Car)car).Accelerate(20);
-        ((Bicycle)bicycle).RingBell();
-    }
-}
-
-
 public interface IReadable
 {
     string ReadData();
@@ -430,42 +346,6 @@ public class ReadOnlyFile : IReadable
         return $"Reading from read-only file {_filePath}: {_content}";
     }
 }
-
-public class TestMultipleInterfaces
-{
-    public static void Test()
-    {
-        Console.WriteLine("\n=== Множественная реализация интерфейсов ===");
-
-        FileManager fileManager = new FileManager("document.txt");
-        ReadOnlyFile readOnlyFile = new ReadOnlyFile("config.ini", "settings data");
-
-        // Работа через IWritable (только для FileManager)
-        IWritable writable = fileManager;
-        writable.WriteData("Hello, World!");
-
-        // Работа через IReadable (для обоих классов)
-        IReadable[] readers = { fileManager, readOnlyFile };
-
-        foreach (var reader in readers)
-        {
-            Console.WriteLine($"\n--- {reader.GetType().Name} ---");
-            Console.WriteLine($"Can read: {reader.CanRead}");
-            Console.WriteLine(reader.ReadData());
-        }
-
-        // Демонстрация, что FileManager реализует оба интерфейса
-        Console.WriteLine("\n--- FileManager implements both interfaces ---");
-        fileManager.DisplayFileInfo();
-
-        // Проверка реализации интерфейсов
-        Console.WriteLine($"FileManager is IReadable: {fileManager is IReadable}");
-        Console.WriteLine($"FileManager is IWritable: {fileManager is IWritable}");
-        Console.WriteLine($"ReadOnlyFile is IReadable: {readOnlyFile is IReadable}");
-        Console.WriteLine($"ReadOnlyFile is IWritable: {readOnlyFile is IWritable}");
-    }
-}
-
 
 public interface ILogger
 {
@@ -589,47 +469,6 @@ public class Application
     }
 }
 
-public class TestLoggerInterface
-{
-    public static void Test()
-    {
-        Console.WriteLine("\n=== Интерфейс как параметр метода ===");
-
-        ILogger consoleLogger = new ConsoleLogger();
-        ILogger fileLogger = new FileLogger("app.log");
-
-        // Использование интерфейса как параметра статического метода
-        Application.UseLogger(consoleLogger, "Hello from console logger!");
-        Application.UseLogger(fileLogger, "Hello from file logger!");
-
-        // Создание приложения с разными логгерами
-        Application app1 = new Application(consoleLogger);
-        Application app2 = new Application(fileLogger);
-
-        Console.WriteLine("\n--- Processing with console logger ---");
-        app1.ProcessData("Sample data");
-        app1.ProcessData("Very long data string here");
-        app1.ProcessData("");
-
-        Console.WriteLine("\n--- Processing with file logger ---");
-        app2.ProcessData("Another sample");
-
-        // Переключение логгера во время выполнения
-        Console.WriteLine("\n--- Switching logger at runtime ---");
-        app1.SetLogger(fileLogger);
-        app1.ProcessData("Data with switched logger");
-
-        // Массив логгеров
-        ILogger[] loggers = { consoleLogger, fileLogger };
-
-        Console.WriteLine("\n--- All available loggers ---");
-        foreach (var logger in loggers)
-        {
-            Application.UseLogger(logger, "Test message from array");
-        }
-    }
-}
-
 public class Student : IComparable<Student>
 {
     public string Name { get; set; }
@@ -685,62 +524,6 @@ public class StudentAgeComparer : IComparer<Student>
         return x.Age.CompareTo(y.Age);
     }
 }
-
-public class TestSortingInterface
-{
-    public static void Test()
-    {
-        Console.WriteLine("\n=== Интерфейс для сортировки ===");
-
-        // Создаем список студентов
-        List<Student> students = new List<Student>
-        {
-            new Student("Alice", 20, 4.5, "CS-101"),
-            new Student("Bob", 22, 3.8, "CS-101"),
-            new Student("Charlie", 21, 4.2, "CS-102"),
-            new Student("Diana", 19, 4.8, "CS-102"),
-            new Student("Eve", 23, 3.9, "CS-101")
-        };
-
-        Console.WriteLine("Original list:");
-        PrintStudents(students);
-
-        // Сортировка по умолчанию (по среднему баллу, убывание)
-        students.Sort();
-        Console.WriteLine("\nSorted by average grade (descending):");
-        PrintStudents(students);
-
-        // Сортировка по имени
-        students.Sort(new StudentNameComparer());
-        Console.WriteLine("\nSorted by name:");
-        PrintStudents(students);
-
-        // Сортировка по возрасту
-        students.Sort(new StudentAgeComparer());
-        Console.WriteLine("\nSorted by age:");
-        PrintStudents(students);
-
-        // Сортировка с использованием LINQ по разным критериям
-        Console.WriteLine("\n--- LINQ Sorting ---");
-
-        var byGradeAsc = students.OrderBy(s => s.AverageGrade).ToList();
-        Console.WriteLine("By grade (ascending):");
-        PrintStudents(byGradeAsc);
-
-        var byGroupAndName = students.OrderBy(s => s.Group).ThenBy(s => s.Name).ToList();
-        Console.WriteLine("\nBy group and name:");
-        PrintStudents(byGroupAndName);
-    }
-
-    private static void PrintStudents(List<Student> students)
-    {
-        foreach (var student in students)
-        {
-            Console.WriteLine($"  {student}");
-        }
-    }
-}
-
 
 public interface ISwitchable
 {
@@ -1087,93 +870,3 @@ public class SmartHome
     }
 }
 
-public class TestSmartHome
-{
-    public static void Test()
-    {
-        Console.WriteLine("\n=== Расширенное задание: Система «Умный дом» ===");
-
-        // Создаем умный дом
-        SmartHome smartHome = new SmartHome();
-
-        // Создаем устройства
-        Light livingRoomLight = new Light("Living Room");
-        Light bedroomLight = new Light("Bedroom");
-        Heater livingRoomHeater = new Heater("Living Room");
-        AirConditioner bedroomAC = new AirConditioner("Bedroom");
-
-        // Добавляем устройства в умный дом
-        smartHome.AddDevice(livingRoomLight);
-        smartHome.AddDevice(bedroomLight);
-        smartHome.AddDevice(livingRoomHeater);
-        smartHome.AddDevice(bedroomAC);
-
-        // Демонстрация работы
-        smartHome.DisplayStatus();
-
-        // Включаем все устройства
-        smartHome.TurnOnAll();
-        smartHome.DisplayStatus();
-
-        // Регулируем устройства
-        Console.WriteLine("\n=== Adjusting Devices ===");
-        smartHome.AdjustDeviceLevel("Light", 75);
-        smartHome.AdjustDeviceLevel("Air Conditioner", 3);
-        smartHome.SetDeviceTemperature("Heater", 24);
-        smartHome.SetDeviceTemperature("Air Conditioner", 20);
-
-        // Показываем регулируемые устройства
-        Console.WriteLine("\n=== Adjustable Devices ===");
-        var adjustableDevices = smartHome.GetAdjustableDevices();
-        foreach (var device in adjustableDevices)
-        {
-            Console.WriteLine($"{device.GetType().Name}: Level {device.CurrentLevel}");
-        }
-
-        // Показываем устройства с контролем температуры
-        Console.WriteLine("\n=== Temperature Controlled Devices ===");
-        var tempDevices = smartHome.GetTemperatureDevices();
-        foreach (var device in tempDevices)
-        {
-            Console.WriteLine($"{device.GetType().Name}: {device.CurrentTemperature}°C (Target: {device.TargetTemperature}°C)");
-        }
-
-        // Выключаем все
-        smartHome.TurnOffAll();
-        smartHome.DisplayStatus();
-
-        // Демонстрация полиморфизма
-        Console.WriteLine("\n=== Polymorphism Demonstration ===");
-        ISwitchable[] devices = { livingRoomLight, livingRoomHeater, bedroomAC };
-
-        foreach (var device in devices)
-        {
-            Console.WriteLine($"\n--- {device.DeviceName} ---");
-            device.On();
-
-            if (device is IAdjustable adjustable)
-            {
-                adjustable.SetLevel(adjustable.MaxLevel);
-            }
-
-            if (device is ITemperatureControllable tempDevice)
-            {
-                tempDevice.SetTemperature(22);
-            }
-        }
-    }
-}
-
-class Program
-{
-    static void Main(string[] args)
-    {
-        TestSimpleInterface.Test();
-        TestDeviceInterface.Test();
-        TestMovableInterface.Test();
-        TestMultipleInterfaces.Test();
-        TestLoggerInterface.Test();
-        TestSortingInterface.Test();
-        TestSmartHome.Test();
-    }
-}

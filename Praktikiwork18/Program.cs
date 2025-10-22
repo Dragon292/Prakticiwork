@@ -41,38 +41,6 @@ public class Rectangle : Figure
     }
 }
 
-public class TestFigures
-{
-    public static void Test()
-    {
-        Console.WriteLine("=== Абстрактный класс «Фигура» ===");
-
-        Figure circle = new Circle(5);
-        Figure rectangle = new Rectangle(4, 6);
-
-        Console.WriteLine("Круг:");
-        circle.DisplayArea();
-
-        Console.WriteLine("Прямоугольник:");
-        rectangle.DisplayArea();
-
-        // Массив фигур
-        Figure[] figures = new Figure[]
-        {
-            new Circle(3),
-            new Rectangle(2, 4),
-            new Circle(7),
-            new Rectangle(5, 5)
-        };
-
-        Console.WriteLine("\nВсе фигуры:");
-        foreach (var figure in figures)
-        {
-            figure.DisplayArea();
-        }
-    }
-}
-
 //2)
 public abstract class Transport
 {
@@ -91,7 +59,6 @@ public abstract class Transport
         Console.WriteLine($"Транспорт: {Name}");
     }
 }
-
 public class Car : Transport
 {
     public Car(string name) : base(name) { }
@@ -129,29 +96,6 @@ public class Bicycle : Transport
     public void RingBell()
     {
         Console.WriteLine($"{Name}: Дзинь-дзинь!");
-    }
-}
-
-public class TestTransport
-{
-    public static void Test()
-    {
-        Console.WriteLine("\n=== Абстрактный класс «Транспорт» ===");
-
-        Transport car = new Car("Toyota Camry");
-        Transport bicycle = new Bicycle("Горный велосипед");
-
-        car.DisplayInfo();
-        car.Start();
-        car.Stop();
-
-        bicycle.DisplayInfo();
-        bicycle.Start();
-        bicycle.Stop();
-
-        // Дополнительные методы
-        ((Car)car).Honk();
-        ((Bicycle)bicycle).RingBell();
     }
 }
 
@@ -217,30 +161,6 @@ public class VideoPlayer : IPlayable
     }
 }
 
-public class TestPlayable
-{
-    public static void Test()
-    {
-        Console.WriteLine("\n=== Интерфейс «IPlayable» ===");
-
-        IPlayable musicPlayer = new MusicPlayer("Богемская рапсодия");
-        IPlayable videoPlayer = new VideoPlayer("Документальный фильм о природе", "4K");
-
-        // Работа через интерфейс
-        IPlayable[] players = { musicPlayer, videoPlayer };
-
-        foreach (var player in players)
-        {
-            player.Play();
-            player.Pause();
-            player.Stop();
-            Console.WriteLine();
-        }
-        // Дополнительные методы конкретных классов
-        ((VideoPlayer)videoPlayer).SetQuality("720p");
-    }
-}
-
 //4)
 public abstract class Device
 {
@@ -261,13 +181,11 @@ public abstract class Device
         Console.WriteLine($"Устройство: {Brand} {Model}");
     }
 }
-
 public interface IRechargeable
 {
     void Recharge();
     int BatteryLevel { get; }
 }
-
 public class Smartphone : Device, IRechargeable
 {
     public int BatteryLevel { get; private set; }
@@ -298,30 +216,6 @@ public class Smartphone : Device, IRechargeable
     {
         BatteryLevel = Math.Max(0, BatteryLevel - amount);
         Console.WriteLine($"{Brand} {Model}: Заряд использован. Осталось: {BatteryLevel}%");
-    }
-}
-
-public class TestDevice
-{
-    public static void Test()
-    {
-        Console.WriteLine("\n=== Комбинация абстрактного класса и интерфейса ===");
-
-        Smartphone phone = new Smartphone("Samsung", "Galaxy S21", 75);
-
-        // Методы от Device
-        phone.DisplayInfo();
-        phone.TurnOn();
-        phone.TurnOff();
-
-        // Методы от IRechargeable
-        phone.UseBattery(20);
-        Console.WriteLine($"Уровень заряда: {phone.BatteryLevel}%");
-        phone.Recharge();
-
-        // Работа через интерфейс
-        IRechargeable rechargeable = phone;
-        rechargeable.Recharge();
     }
 }
 
@@ -363,7 +257,6 @@ public class CreditCardPayment : IPayment
 
         return success;
     }
-
     private bool SimulatePaymentProcessing()
     {
         // В реальной системе здесь была бы логика обработки платежа
@@ -424,34 +317,6 @@ public class OrderProcessor
         else
         {
             Console.WriteLine("Заказ не выполнен из-за проблем с оплатой.");
-        }
-    }
-}
-
-public class TestPayment
-{
-    public static void Test()
-    {
-        Console.WriteLine("\n=== Система оплаты ===");
-
-        // Создаем способы оплаты
-        IPayment creditCard = new CreditCardPayment("**** **** **** 1234", "Иван Иванов");
-        IPayment payPal = new PayPalPayment("ivan.ivanov@example.com");
-
-        // Создаем обработчик заказов
-        OrderProcessor processor = new OrderProcessor();
-
-        // Обрабатываем заказы с разными способами оплаты
-        processor.ProcessOrder(creditCard, 99.99, "Сумка для ноутбука");
-        processor.ProcessOrder(payPal, 49.50, "Беспроводная мышь");
-
-        // Массив платежей
-        IPayment[] payments = { creditCard, payPal };
-
-        Console.WriteLine("\nВсе доступные способы оплаты:");
-        foreach (var payment in payments)
-        {
-            Console.WriteLine($"- {payment.PaymentMethod}");
         }
     }
 }
@@ -739,62 +604,4 @@ public class Zoo
     }
 }
 
-public class TestAnimals
-{
-    public static void Test()
-    {
-        Console.WriteLine("\n=== Расширенное задание: Система «Животные» ===");
 
-        // Создаем зоопарк
-        Zoo zoo = new Zoo();
-
-        // Добавляем животных
-        zoo.AddAnimal(new Dog("Бадди", 3, "Золотистый ретривер"));
-        zoo.AddAnimal(new Dog("Макс", 5, "Немецкая овчарка"));
-        zoo.AddAnimal(new Cat("Усики", 2, "Серый"));
-        zoo.AddAnimal(new Cat("Луна", 4, "Черный"));
-        zoo.AddAnimal(new Bird("Чижик", 1, "Канарейка", 15.5));
-        zoo.AddAnimal(new Bird("Поли", 10, "Попугай", 25.0));
-
-        // Запускаем день в зоопарке
-        zoo.StartDay();
-
-        // Показываем статистику
-        zoo.DisplayStatistics();
-
-        Console.WriteLine("\n=== Дополнительная демонстрация полиморфизма ===");
-
-        Animal[] allAnimals = new Animal[]
-        {
-            new Dog("Рекс", 4, "Бульдог"),
-            new Cat("Варежки", 3, "Белый"),
-            new Bird("Воробей", 2, "Воробей", 12.0)
-        };
-
-        foreach (var animal in allAnimals)
-        {
-            Console.WriteLine($"\n--- {animal.GetType().Name} ---");
-            animal.Eat();
-            animal.MakeSound();
-
-            if (animal is IMovable movable)
-            {
-                movable.Move();
-            }
-        }
-    }
-}
-
-class Program
-{
-    static void Main(string[] args)
-    {
-        TestFigures.Test();
-        TestTransport.Test();
-        TestPlayable.Test();
-        TestDevice.Test();
-        TestPayment.Test();
-        TestPolymorphism.Test();
-        TestAnimals.Test();
-    }
-}
