@@ -1,0 +1,14 @@
+C:\Users\ajdar\source\repos\Prakticiwork\Praktikiwork18\bin\Debug\net8.0\Praktikiwork18.exe
+C:\Users\ajdar\source\repos\Prakticiwork\Praktikiwork18\bin\Debug\net8.0\Praktikiwork18.deps.json
+C:\Users\ajdar\source\repos\Prakticiwork\Praktikiwork18\bin\Debug\net8.0\Praktikiwork18.runtimeconfig.json
+C:\Users\ajdar\source\repos\Prakticiwork\Praktikiwork18\bin\Debug\net8.0\Praktikiwork18.dll
+C:\Users\ajdar\source\repos\Prakticiwork\Praktikiwork18\bin\Debug\net8.0\Praktikiwork18.pdb
+C:\Users\ajdar\source\repos\Prakticiwork\Praktikiwork18\obj\Debug\net8.0\Praktikiwork18.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ajdar\source\repos\Prakticiwork\Praktikiwork18\obj\Debug\net8.0\Praktikiwork18.AssemblyInfoInputs.cache
+C:\Users\ajdar\source\repos\Prakticiwork\Praktikiwork18\obj\Debug\net8.0\Praktikiwork18.AssemblyInfo.cs
+C:\Users\ajdar\source\repos\Prakticiwork\Praktikiwork18\obj\Debug\net8.0\Praktikiwork18.csproj.CoreCompileInputs.cache
+C:\Users\ajdar\source\repos\Prakticiwork\Praktikiwork18\obj\Debug\net8.0\Praktikiwork18.dll
+C:\Users\ajdar\source\repos\Prakticiwork\Praktikiwork18\obj\Debug\net8.0\refint\Praktikiwork18.dll
+C:\Users\ajdar\source\repos\Prakticiwork\Praktikiwork18\obj\Debug\net8.0\Praktikiwork18.pdb
+C:\Users\ajdar\source\repos\Prakticiwork\Praktikiwork18\obj\Debug\net8.0\Praktikiwork18.genruntimeconfig.cache
+C:\Users\ajdar\source\repos\Prakticiwork\Praktikiwork18\obj\Debug\net8.0\ref\Praktikiwork18.dll

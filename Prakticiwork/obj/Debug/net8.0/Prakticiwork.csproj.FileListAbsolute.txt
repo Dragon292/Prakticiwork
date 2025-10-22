@@ -1,0 +1,14 @@
+C:\Users\ajdar\source\repos\Prakticiwork\Prakticiwork\bin\Debug\net8.0\Prakticiwork.exe
+C:\Users\ajdar\source\repos\Prakticiwork\Prakticiwork\bin\Debug\net8.0\Prakticiwork.deps.json
+C:\Users\ajdar\source\repos\Prakticiwork\Prakticiwork\bin\Debug\net8.0\Prakticiwork.runtimeconfig.json
+C:\Users\ajdar\source\repos\Prakticiwork\Prakticiwork\bin\Debug\net8.0\Prakticiwork.dll
+C:\Users\ajdar\source\repos\Prakticiwork\Prakticiwork\bin\Debug\net8.0\Prakticiwork.pdb
+C:\Users\ajdar\source\repos\Prakticiwork\Prakticiwork\obj\Debug\net8.0\Prakticiwork.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ajdar\source\repos\Prakticiwork\Prakticiwork\obj\Debug\net8.0\Prakticiwork.AssemblyInfoInputs.cache
+C:\Users\ajdar\source\repos\Prakticiwork\Prakticiwork\obj\Debug\net8.0\Prakticiwork.AssemblyInfo.cs
+C:\Users\ajdar\source\repos\Prakticiwork\Prakticiwork\obj\Debug\net8.0\Prakticiwork.csproj.CoreCompileInputs.cache
+C:\Users\ajdar\source\repos\Prakticiwork\Prakticiwork\obj\Debug\net8.0\Prakticiwork.dll
+C:\Users\ajdar\source\repos\Prakticiwork\Prakticiwork\obj\Debug\net8.0\refint\Prakticiwork.dll
+C:\Users\ajdar\source\repos\Prakticiwork\Prakticiwork\obj\Debug\net8.0\Prakticiwork.pdb
+C:\Users\ajdar\source\repos\Prakticiwork\Prakticiwork\obj\Debug\net8.0\Prakticiwork.genruntimeconfig.cache
+C:\Users\ajdar\source\repos\Prakticiwork\Prakticiwork\obj\Debug\net8.0\ref\Prakticiwork.dll
