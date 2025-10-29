@@ -1,607 +1,374 @@
-﻿//1)
+﻿//Абстракция в объектно-ориентированном программировании (ООП) — это выделение общих характеристик объектов и скрытие их внутренних деталей.
+//Программист показывает только те свойства и методы, которые действительно нужны для взаимодействия с объектом, игнорируя детали реализации. 
+//Абстракция помогает:
+//Упростить код — скрыть сложные детали реализации, сделать код более понятным и управляемым.
+//Повторно использовать код — общие компоненты могут быть использованы в различных частях программы, что снижает дублирование кода.
+//Разбить систему на более мелкие, управляемые части — это облегчает её понимание и поддержку.
+
+// 1. Абстрактный класс «Фигура»
 public abstract class Figure
 {
+    // Абстрактный метод для вычисления площади (должен быть реализован в наследниках)
     public abstract double GetArea();
-
-    public void DisplayArea()
-    {
-        Console.WriteLine($"Площадь: {GetArea():F2}");
-    }
 }
 
+// Класс Круг, наследующий от Figure
 public class Circle : Figure
 {
     public double Radius { get; set; }
 
-    public Circle(double radius)
-    {
-        Radius = radius;
-    }
-
+    // Реализация абстрактного метода GetArea для круга
     public override double GetArea()
     {
         return Math.PI * Radius * Radius;
     }
 }
 
+// Класс Прямоугольник, наследующий от Figure
 public class Rectangle : Figure
 {
     public double Width { get; set; }
     public double Height { get; set; }
 
-    public Rectangle(double width, double height)
-    {
-        Width = width;
-        Height = height;
-    }
-
+    // Реализация абстрактного метода GetArea для прямоугольника
     public override double GetArea()
     {
         return Width * Height;
     }
 }
 
-//2)
+// 2. Абстрактный класс «Транспорт»
 public abstract class Transport
 {
-    public string Name { get; set; }
-
-    public Transport(string name)
-    {
-        Name = name;
-    }
-
+    // Абстрактные методы, которые должны быть реализованы в наследниках
     public abstract void Start();
     public abstract void Stop();
-
-    public void DisplayInfo()
-    {
-        Console.WriteLine($"Транспорт: {Name}");
-    }
 }
+
+// Класс Автомобиль, наследующий от Transport
 public class Car : Transport
 {
-    public Car(string name) : base(name) { }
-
+    // Реализация метода Start для автомобиля
     public override void Start()
     {
-        Console.WriteLine($"{Name}: Поворот ключа, двигатель запускается");
+        Console.WriteLine("Машина заводится");
     }
 
+    // Реализация метода Stop для автомобиля
     public override void Stop()
     {
-        Console.WriteLine($"{Name}: Выключение двигателя");
-    }
-
-    public void Honk()
-    {
-        Console.WriteLine($"{Name}: Бип-бип!");
+        Console.WriteLine("Машина останавливается");
     }
 }
 
+// Класс Велосипед, наследующий от Transport
 public class Bicycle : Transport
 {
-    public Bicycle(string name) : base(name) { }
-
+    // Реализация метода Start для велосипеда
     public override void Start()
     {
-        Console.WriteLine($"{Name}: Начало кручения педалей");
+        Console.WriteLine("Велосипед начинает движение");
     }
 
+    // Реализация метода Stop для велосипеда
     public override void Stop()
     {
-        Console.WriteLine($"{Name}: Применение тормозов и остановка");
-    }
-
-    public void RingBell()
-    {
-        Console.WriteLine($"{Name}: Дзинь-дзинь!");
+        Console.WriteLine("Велосипед останавливается");
     }
 }
 
-//3)
+// 3. Интерфейс «IPlayable»
 public interface IPlayable
 {
+    // Методы, которые должны быть реализованы в классах, имплементирующих интерфейс
     void Play();
     void Pause();
-    void Stop();
 }
 
+// Класс MusicPlayer, реализующий интерфейс IPlayable
 public class MusicPlayer : IPlayable
 {
-    public string SongName { get; set; }
-
-    public MusicPlayer(string songName)
-    {
-        SongName = songName;
-    }
-
+    // Реализация метода Play интерфейса IPlayable
     public void Play()
     {
-        Console.WriteLine($"Воспроизведение музыки: {SongName}");
+        Console.WriteLine("Музыка играет");
     }
 
+    // Реализация метода Pause интерфейса IPlayable
     public void Pause()
     {
-        Console.WriteLine($"Музыка приостановлена: {SongName}");
-    }
-
-    public void Stop()
-    {
-        Console.WriteLine($"Музыка остановлена: {SongName}");
+        Console.WriteLine("Музыка на паузе");
     }
 }
 
+// Класс VideoPlayer, реализующий интерфейс IPlayable
 public class VideoPlayer : IPlayable
 {
-    public string VideoName { get; set; }
-    public string Quality { get; set; }
-
-    public VideoPlayer(string videoName, string quality = "1080p")
-    {
-        VideoName = videoName;
-        Quality = quality;
-    }
+    // Реализация метода Play интерфейса IPlayable
     public void Play()
     {
-        Console.WriteLine($"Воспроизведение видео: {VideoName} [{Quality}]");
+        Console.WriteLine("Видео играет");
     }
+
+    // Реализация метода Pause интерфейса IPlayable
     public void Pause()
     {
-        Console.WriteLine($"Видео приостановлено: {VideoName}");
-    }
-    public void Stop()
-    {
-        Console.WriteLine($"Видео остановлено: {VideoName}");
-    }
-    public void SetQuality(string quality)
-    {
-        Quality = quality;
-        Console.WriteLine($"Качество установлено: {quality}");
+        Console.WriteLine("Видео на паузе");
     }
 }
 
-//4)
+// 4. Комбинация абстрактного класса и интерфейса
+
+// Абстрактный класс Device
 public abstract class Device
 {
-    public string Brand { get; set; }
-    public string Model { get; set; }
-
-    public Device(string brand, string model)
-    {
-        Brand = brand;
-        Model = model;
-    }
-
+    // Абстрактный метод, который должен быть реализован в наследниках
     public abstract void TurnOn();
-    public abstract void TurnOff();
-
-    public void DisplayInfo()
-    {
-        Console.WriteLine($"Устройство: {Brand} {Model}");
-    }
 }
+
+// Интерфейс IRechargeable
 public interface IRechargeable
 {
+    // Метод, который должны реализовать классы с возможностью зарядки
     void Recharge();
-    int BatteryLevel { get; }
 }
+
+// Класс Smartphone наследует от Device и реализует интерфейс IRechargeable
 public class Smartphone : Device, IRechargeable
 {
-    public int BatteryLevel { get; private set; }
-
-    public Smartphone(string brand, string model, int batteryLevel = 50)
-        : base(brand, model)
-    {
-        BatteryLevel = batteryLevel;
-    }
-
+    // Реализация абстрактного метода TurnOn из класса Device
     public override void TurnOn()
     {
-        Console.WriteLine($"{Brand} {Model}: Экран загорается, добро пожаловать!");
+        Console.WriteLine("Телефон включается");
     }
 
-    public override void TurnOff()
-    {
-        Console.WriteLine($"{Brand} {Model}: До свидания! Экран гаснет");
-    }
-
+    // Реализация метода Recharge из интерфейса IRechargeable
     public void Recharge()
     {
-        BatteryLevel = 100;
-        Console.WriteLine($"{Brand} {Model}: Полностью заряжено! Заряд: {BatteryLevel}%");
-    }
-
-    public void UseBattery(int amount)
-    {
-        BatteryLevel = Math.Max(0, BatteryLevel - amount);
-        Console.WriteLine($"{Brand} {Model}: Заряд использован. Осталось: {BatteryLevel}%");
+        Console.WriteLine("Телефон заряжается");
     }
 }
 
-//5)
+// 5. Система оплаты
+
+// Интерфейс IPayment для системы оплаты
 public interface IPayment
 {
-    bool Pay(double amount);
-    string PaymentMethod { get; }
+    // Метод для выполнения платежа
+    void Pay(double amount);
 }
 
+// Класс CreditCardPayment, реализующий интерфейс IPayment
 public class CreditCardPayment : IPayment
 {
-    public string CardNumber { get; set; }
-    public string CardHolder { get; set; }
-    public string PaymentMethod => "Кредитная карта";
-
-    public CreditCardPayment(string cardNumber, string cardHolder)
+    // Реализация метода Pay для оплаты кредитной картой
+    public void Pay(double amount)
     {
-        CardNumber = cardNumber;
-        CardHolder = cardHolder;
-    }
-
-    public bool Pay(double amount)
-    {
-        Console.WriteLine($"Обработка платежа по кредитной карте на ${amount:F2}");
-        Console.WriteLine($"Карта: {CardNumber}, Владелец: {CardHolder}");
-
-        // Симуляция обработки платежа
-        bool success = SimulatePaymentProcessing();
-
-        if (success)
-        {
-            Console.WriteLine("Платеж успешен!");
-        }
-        else
-        {
-            Console.WriteLine("Платеж не прошел!");
-        }
-
-        return success;
-    }
-    private bool SimulatePaymentProcessing()
-    {
-        // В реальной системе здесь была бы логика обработки платежа
-        return true;
+        Console.WriteLine($"Оплата картой: {amount} руб.");
     }
 }
 
+// Класс PayPalPayment, реализующий интерфейс IPayment
 public class PayPalPayment : IPayment
 {
-    public string Email { get; set; }
-    public string PaymentMethod => "PayPal";
-
-    public PayPalPayment(string email)
+    // Реализация метода Pay для оплаты через PayPal
+    public void Pay(double amount)
     {
-        Email = email;
-    }
-
-    public bool Pay(double amount)
-    {
-        Console.WriteLine($"Обработка PayPal платежа на ${amount:F2}");
-        Console.WriteLine($"Email: {Email}");
-
-        // Симуляция обработки платежа
-        bool success = SimulatePaymentProcessing();
-
-        if (success)
-        {
-            Console.WriteLine("PayPal платеж успешен!");
-        }
-        else
-        {
-            Console.WriteLine("PayPal платеж не прошел!");
-        }
-
-        return success;
-    }
-
-    private bool SimulatePaymentProcessing()
-    {
-        return true;
+        Console.WriteLine($"Оплата PayPal: {amount} руб.");
     }
 }
 
-public class OrderProcessor
-{
-    public void ProcessOrder(IPayment payment, double amount, string orderDescription)
-    {
-        Console.WriteLine($"\nОбработка заказа: {orderDescription}");
-        Console.WriteLine($"Сумма: ${amount:F2}");
-        Console.WriteLine($"Способ оплаты: {payment.PaymentMethod}");
-
-        bool paymentSuccess = payment.Pay(amount);
-
-        if (paymentSuccess)
-        {
-            Console.WriteLine("Заказ успешно завершен!");
-        }
-        else
-        {
-            Console.WriteLine("Заказ не выполнен из-за проблем с оплатой.");
-        }
-    }
-}
-
-//6)
+// 6. Полиморфизм через абстракцию
 public class TestPolymorphism
 {
     public static void Test()
     {
-        Console.WriteLine("\n=== Полиморфизм через абстракцию ===");
-
-        // Создаем список объектов разных типов
-        Figure[] figures = new Figure[]
-        {
-            new Circle(10),
-            new Rectangle(8, 12),
-            new Circle(15),
-            new Rectangle(5, 5)
+        // Создаем массив фигур разных типов (полиморфизм)
+        Figure[] figures = {
+            new Circle { Radius = 5 },
+            new Rectangle { Width = 4, Height = 6 }
         };
 
-        Transport[] transports = new Transport[]
-        {
-            new Car("Honda Civic"),
-            new Bicycle("Городской велосипед"),
-            new Car("Ford Focus"),
-            new Bicycle("Шоссейный велосипед")
-        };
-
-        IPlayable[] mediaPlayers = new IPlayable[]
-        {
-            new MusicPlayer("Imagine - Джон Леннон"),
-            new VideoPlayer("Боевик", "1080p"),
-            new MusicPlayer("Yesterday - Битлз")
-        };
-
-        // Демонстрация полиморфизма с фигурами
-        Console.WriteLine("Вычисление площади фигур:");
-        double totalArea = 0;
+        // Вызываем GetArea() для каждой фигуры - работает полиморфизм
         foreach (var figure in figures)
         {
-            double area = figure.GetArea(); // Полиморфный вызов
-            Console.WriteLine($"Площадь: {area:F2}");
-            totalArea += area;
+            Console.WriteLine($"Площадь: {figure.GetArea():F2}");
         }
-        Console.WriteLine($"Общая площадь: {totalArea:F2}");
 
-        // Демонстрация полиморфизма с транспортом
-        Console.WriteLine("\nОперации с транспортом:");
+        // Создаем массив транспорта разных типов (полиморфизм)
+        Transport[] transports = { new Car(), new Bicycle() };
+
+        // Вызываем Start() и Stop() для каждого транспорта - работает полиморфизм
         foreach (var transport in transports)
         {
-            transport.Start(); // Полиморфный вызов
-            transport.Stop();  // Полиморфный вызов
-            Console.WriteLine();
-        }
-
-        // Демонстрация полиморфизма с медиаплеерами
-        Console.WriteLine("Медиаплееры:");
-        foreach (var player in mediaPlayers)
-        {
-            player.Play();  // Полиморфный вызов
-            player.Pause(); // Полиморфный вызов
-            Console.WriteLine();
+            transport.Start();
+            transport.Stop();
         }
     }
 }
 
-//7)
+// 7. Система «Животные»
+
+// Абстрактный класс Animal
 public abstract class Animal
 {
-    public string Name { get; set; }
-    public int Age { get; set; }
-
-    public Animal(string name, int age)
-    {
-        Name = name;
-        Age = age;
-    }
-
+    // Абстрактные методы, которые должны быть реализованы в наследниках
     public abstract void Eat();
     public abstract void MakeSound();
-
-    public virtual void Sleep()
-    {
-        Console.WriteLine($"{Name} спит...");
-    }
-
-    public void DisplayInfo()
-    {
-        Console.WriteLine($"Животное: {Name}, Возраст: {Age}");
-    }
 }
 
-// Интерфейс Перемещаемый
+// Интерфейс IMovable для объектов, которые могут перемещаться
 public interface IMovable
 {
     void Move();
-    string MovementType { get; }
 }
 
+// Класс Dog наследует от Animal и реализует интерфейс IMovable
 public class Dog : Animal, IMovable
 {
-    public string Breed { get; set; }
-    public string MovementType => "бег";
-
-    public Dog(string name, int age, string breed) : base(name, age)
-    {
-        Breed = breed;
-    }
-
+    // Реализация метода Eat для собаки
     public override void Eat()
     {
-        Console.WriteLine($"{Name} породы {Breed} ест собачий корм");
+        Console.WriteLine("Собака ест");
     }
 
+    // Реализация метода MakeSound для собаки
     public override void MakeSound()
     {
-        Console.WriteLine($"{Name} говорит: Гав! Гав!");
+        Console.WriteLine("Гав-гав!");
     }
 
+    // Реализация метода Move из интерфейса IMovable
     public void Move()
     {
-        Console.WriteLine($"{Name} {MovementType} радостно виляя хвостом");
-    }
-
-    public void Fetch()
-    {
-        Console.WriteLine($"{Name} приносит мячик!");
+        Console.WriteLine("Собака бежит");
     }
 }
 
+// Класс Cat наследует от Animal и реализует интерфейс IMovable
 public class Cat : Animal, IMovable
 {
-    public string Color { get; set; }
-    public string MovementType => "крадется";
-
-    public Cat(string name, int age, string color) : base(name, age)
-    {
-        Color = color;
-    }
-
+    // Реализация метода Eat для кошки
     public override void Eat()
     {
-        Console.WriteLine($"{Name} {Color} кошка ест рыбу");
+        Console.WriteLine("Кошка ест");
     }
 
+    // Реализация метода MakeSound для кошки
     public override void MakeSound()
     {
-        Console.WriteLine($"{Name} говорит: Мяу! Мяу!");
+        Console.WriteLine("Мяу!");
     }
 
+    // Реализация метода Move из интерфейса IMovable
     public void Move()
     {
-        Console.WriteLine($"{Name} {MovementType} бесшумно и грациозно");
-    }
-
-    public void ClimbTree()
-    {
-        Console.WriteLine($"{Name} залезает на дерево");
+        Console.WriteLine("Кошка крадется");
     }
 }
 
+// Класс Bird наследует от Animal и реализует интерфейс IMovable
 public class Bird : Animal, IMovable
 {
-    public string Species { get; set; }
-    public double Wingspan { get; set; }
-    public string MovementType => "полет";
-
-    public Bird(string name, int age, string species, double wingspan)
-        : base(name, age)
-    {
-        Species = species;
-        Wingspan = wingspan;
-    }
-
+    // Реализация метода Eat для птицы
     public override void Eat()
     {
-        Console.WriteLine($"{Name} вида {Species} ест семена и насекомых");
+        Console.WriteLine("Птица ест");
     }
 
+    // Реализация метода MakeSound для птицы
     public override void MakeSound()
     {
-        Console.WriteLine($"{Name} говорит: Чик-чирик!");
+        Console.WriteLine("Чирик-чирик!");
     }
 
+    // Реализация метода Move из интерфейса IMovable
     public void Move()
     {
-        Console.WriteLine($"{Name} {MovementType} с размахом крыльев {Wingspan}см");
-    }
-
-    public void BuildNest()
-    {
-        Console.WriteLine($"{Name} строит гнездо");
+        Console.WriteLine("Птица летит");
     }
 }
 
+// Класс Zoo для демонстрации работы с животными
 public class Zoo
 {
-    private List<Animal> animals;
-    private List<IMovable> movables;
+    // Список для хранения животных
+    private List<Animal> animals = new List<Animal>();
 
-    public Zoo()
-    {
-        animals = new List<Animal>();
-        movables = new List<IMovable>();
-    }
-
+    // Метод для добавления животного в зоопарк
     public void AddAnimal(Animal animal)
     {
         animals.Add(animal);
-
-        // Если животное может перемещаться, добавляем в соответствующий список
-        if (animal is IMovable movable)
-        {
-            movables.Add(movable);
-        }
     }
 
-    public void StartDay()
+    // Метод для показа всех животных и их поведения
+    public void ShowAnimals()
     {
-        Console.WriteLine("=== НАЧАЛО ДНЯ В ЗООПАРКЕ ===");
-
-        Console.WriteLine("\n1. Все животные просыпаются:");
         foreach (var animal in animals)
         {
-            animal.DisplayInfo();
-        }
+            // Вызываем методы из абстрактного класса Animal
+            animal.Eat();
+            animal.MakeSound();
 
-        Console.WriteLine("\n2. Утреннее кормление:");
-        foreach (var animal in animals)
-        {
-            animal.Eat(); // Полиморфный вызов
-        }
-
-        Console.WriteLine("\n3. Звуки животных:");
-        foreach (var animal in animals)
-        {
-            animal.MakeSound(); // Полиморфный вызов
-        }
-
-        Console.WriteLine("\n4. Время движения:");
-        foreach (var movable in movables)
-        {
-            movable.Move(); // Полиморфный вызов через интерфейс
-        }
-
-        Console.WriteLine("\n5. Особые активности:");
-        foreach (var animal in animals)
-        {
-            if (animal is Dog dog)
+            // Проверяем, реализует ли животное интерфейс IMovable
+            if (animal is IMovable movable)
             {
-                dog.Fetch();
+                // Если да, вызываем метод Move
+                movable.Move();
             }
-            else if (animal is Cat cat)
-            {
-                cat.ClimbTree();
-            }
-            else if (animal is Bird bird)
-            {
-                bird.BuildNest();
-            }
+            Console.WriteLine(); // Пустая строка для разделения
         }
-
-        Console.WriteLine("\n6. Время сна:");
-        foreach (var animal in animals)
-        {
-            animal.Sleep();
-        }
-
-        Console.WriteLine("=== КОНЕЦ ДНЯ В ЗООПАРКЕ ===");
-    }
-
-    public void DisplayStatistics()
-    {
-        Console.WriteLine("\n=== СТАТИСТИКА ЗООПАРКА ===");
-        Console.WriteLine($"Всего животных: {animals.Count}");
-        Console.WriteLine($"Подвижных животных: {movables.Count}");
-
-        var dogs = animals.OfType<Dog>().Count();
-        var cats = animals.OfType<Cat>().Count();
-        var birds = animals.OfType<Bird>().Count();
-
-        Console.WriteLine($"Собак: {dogs}");
-        Console.WriteLine($"Кошек: {cats}");
-        Console.WriteLine($"Птиц: {birds}");
     }
 }
 
+class Program
+{
+    static void Main()
+    {
+        // Тест 1: Фигуры
+        Console.WriteLine("1. Фигуры:");
+        Figure circle = new Circle { Radius = 3 };
+        Figure rectangle = new Rectangle { Width = 4, Height = 5 };
+        Console.WriteLine($"Круг: {circle.GetArea():F2}");
+        Console.WriteLine($"Прямоугольник: {rectangle.GetArea():F2}");
 
+        // Тест 2: Транспорт
+        Console.WriteLine("\n2. Транспорт:");
+        Transport car = new Car();
+        Transport bicycle = new Bicycle();
+        car.Start(); car.Stop();
+        bicycle.Start(); bicycle.Stop();
+
+        // Тест 3: Плееры
+        Console.WriteLine("\n3. Плееры:");
+        IPlayable music = new MusicPlayer();
+        IPlayable video = new VideoPlayer();
+        music.Play(); music.Pause();
+        video.Play(); video.Pause();
+
+        // Тест 4: Устройство с зарядкой
+        Console.WriteLine("\n4. Устройство:");
+        Smartphone phone = new Smartphone();
+        phone.TurnOn();
+        phone.Recharge();
+
+        // Тест 5: Система оплаты
+        Console.WriteLine("\n5. Оплата:");
+        IPayment card = new CreditCardPayment();
+        IPayment paypal = new PayPalPayment();
+        card.Pay(1000);
+        paypal.Pay(500);
+
+        // Тест 6: Полиморфизм
+        Console.WriteLine("\n6. Полиморфизм:");
+        TestPolymorphism.Test();
+
+        // Тест 7: Зоопарк
+        Console.WriteLine("\n7. Зоопарк:");
+        Zoo zoo = new Zoo();
+        zoo.AddAnimal(new Dog());
+        zoo.AddAnimal(new Cat());
+        zoo.AddAnimal(new Bird());
+        zoo.ShowAnimals();
+    }
+}

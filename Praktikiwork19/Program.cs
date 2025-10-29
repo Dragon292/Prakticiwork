@@ -1,4 +1,11 @@
-﻿public interface IAnimal
+﻿//Интерфейс в объектно-ориентированном программировании (ООП) — это набор методов, которые описывают, как объект может взаимодействовать с другими объектами.
+//Интерфейс определяет, какие действия можно выполнить с объектом и какие данные можно получить от него. 
+//Особенности:
+//Интерфейс не содержит реализации самой логики методов — определяет только сигнатуры методов (их названия, возвращаемые значения и параметры).
+//Реализация методов остаётся на усмотрение классов, реализующих интерфейс.
+//Интерфейс не является полноценным типом данных, так как задаёт только внешнее поведение объектов.
+// 1. Простейший интерфейс - IAnimal
+public interface IAnimal
 {
     void Eat();
     void MakeSound();
@@ -19,17 +26,12 @@ public class Dog : IAnimal
 
     public void Eat()
     {
-        Console.WriteLine($"{Name} the {Breed} is eating dog food");
+        Console.WriteLine($"{Name} ест корм для собак");
     }
 
     public void MakeSound()
     {
-        Console.WriteLine($"{Name} says: Woof! Woof!");
-    }
-
-    public void Fetch()
-    {
-        Console.WriteLine($"{Name} is fetching the ball!");
+        Console.WriteLine($"{Name} говорит: Гав-гав!");
     }
 }
 
@@ -47,83 +49,41 @@ public class Cat : IAnimal
 
     public void Eat()
     {
-        Console.WriteLine($"{Name} the {Color} cat is eating fish");
+        Console.WriteLine($"{Name} ест рыбу");
     }
 
     public void MakeSound()
     {
-        Console.WriteLine($"{Name} says: Meow! Meow!");
-    }
-
-    public void ClimbTree()
-    {
-        Console.WriteLine($"{Name} is climbing a tree");
+        Console.WriteLine($"{Name} говорит: Мяу-мяу!");
     }
 }
 
+// 2. Интерфейс «Устройство» - IDevice
 public interface IDevice
 {
     void TurnOn();
     void TurnOff();
     string Brand { get; set; }
-    string Model { get; set; }
-    bool IsOn { get; }
 }
 
 // Класс Компьютер
 public class Computer : IDevice
 {
     public string Brand { get; set; }
-    public string Model { get; set; }
-    public bool IsOn { get; private set; }
-    public string OS { get; set; }
 
-    public Computer(string brand, string model, string os)
+    public Computer(string brand)
     {
         Brand = brand;
-        Model = model;
-        OS = os;
-        IsOn = false;
     }
 
     public void TurnOn()
     {
-        if (!IsOn)
-        {
-            IsOn = true;
-            Console.WriteLine($"{Brand} {Model} is booting up {OS}...");
-            Console.WriteLine("Computer is ready to use");
-        }
-        else
-        {
-            Console.WriteLine("Computer is already on");
-        }
+        Console.WriteLine($"{Brand} компьютер включается");
     }
 
     public void TurnOff()
     {
-        if (IsOn)
-        {
-            IsOn = false;
-            Console.WriteLine($"{Brand} {Model} is shutting down...");
-            Console.WriteLine("Computer is off");
-        }
-        else
-        {
-            Console.WriteLine("Computer is already off");
-        }
-    }
-
-    public void RunProgram(string programName)
-    {
-        if (IsOn)
-        {
-            Console.WriteLine($"Running {programName} on {Brand} {Model}");
-        }
-        else
-        {
-            Console.WriteLine("Cannot run program - computer is off");
-        }
+        Console.WriteLine($"{Brand} компьютер выключается");
     }
 }
 
@@ -131,78 +91,27 @@ public class Computer : IDevice
 public class TV : IDevice
 {
     public string Brand { get; set; }
-    public string Model { get; set; }
-    public bool IsOn { get; private set; }
-    public int Channel { get; private set; }
-    public int Volume { get; private set; }
 
-    public TV(string brand, string model)
+    public TV(string brand)
     {
         Brand = brand;
-        Model = model;
-        IsOn = false;
-        Channel = 1;
-        Volume = 20;
     }
 
     public void TurnOn()
     {
-        if (!IsOn)
-        {
-            IsOn = true;
-            Console.WriteLine($"{Brand} {Model} is turning on...");
-            Console.WriteLine($"Channel: {Channel}, Volume: {Volume}");
-        }
-        else
-        {
-            Console.WriteLine("TV is already on");
-        }
+        Console.WriteLine($"{Brand} телевизор включается");
     }
 
     public void TurnOff()
     {
-        if (IsOn)
-        {
-            IsOn = false;
-            Console.WriteLine($"{Brand} {Model} is turning off...");
-        }
-        else
-        {
-            Console.WriteLine("TV is already off");
-        }
-    }
-
-    public void ChangeChannel(int channel)
-    {
-        if (IsOn)
-        {
-            Channel = channel;
-            Console.WriteLine($"Changed to channel {Channel}");
-        }
-        else
-        {
-            Console.WriteLine("Cannot change channel - TV is off");
-        }
-    }
-
-    public void SetVolume(int volume)
-    {
-        if (IsOn)
-        {
-            Volume = Math.Max(0, Math.Min(100, volume));
-            Console.WriteLine($"Volume set to {Volume}");
-        }
-        else
-        {
-            Console.WriteLine("Cannot set volume - TV is off");
-        }
+        Console.WriteLine($"{Brand} телевизор выключается");
     }
 }
 
+// 3. Интерфейс с свойствами - IMovable
 public interface IMovable
 {
     double Speed { get; set; }
-    string MovementType { get; }
     void Move();
     void Stop();
 }
@@ -212,7 +121,6 @@ public class Car : IMovable
 {
     public string Model { get; set; }
     public double Speed { get; set; }
-    public string MovementType => "driving";
 
     public Car(string model)
     {
@@ -222,23 +130,14 @@ public class Car : IMovable
 
     public void Move()
     {
-        if (Speed == 0)
-        {
-            Speed = 60; // начальная скорость
-        }
-        Console.WriteLine($"{Model} is {MovementType} at {Speed} km/h");
+        Speed = 60;
+        Console.WriteLine($"{Model} едет со скоростью {Speed} км/ч");
     }
 
     public void Stop()
     {
         Speed = 0;
-        Console.WriteLine($"{Model} has stopped");
-    }
-
-    public void Accelerate(double acceleration)
-    {
-        Speed += acceleration;
-        Console.WriteLine($"{Model} accelerated to {Speed} km/h");
+        Console.WriteLine($"{Model} остановился");
     }
 }
 
@@ -247,7 +146,6 @@ public class Bicycle : IMovable
 {
     public string Type { get; set; }
     public double Speed { get; set; }
-    public string MovementType => "pedaling";
 
     public Bicycle(string type)
     {
@@ -257,545 +155,197 @@ public class Bicycle : IMovable
 
     public void Move()
     {
-        if (Speed == 0)
-        {
-            Speed = 15; // начальная скорость
-        }
-        Console.WriteLine($"{Type} bicycle is {MovementType} at {Speed} km/h");
+        Speed = 15;
+        Console.WriteLine($"{Type} велосипед едет со скоростью {Speed} км/ч");
     }
 
     public void Stop()
     {
         Speed = 0;
-        Console.WriteLine($"{Type} bicycle has stopped");
-    }
-
-    public void RingBell()
-    {
-        Console.WriteLine("Ring! Ring!");
+        Console.WriteLine($"{Type} велосипед остановился");
     }
 }
 
+// 4. Множественная реализация интерфейсов
 public interface IReadable
 {
     string ReadData();
-    bool CanRead { get; }
 }
 
-// Интерфейс для записи
 public interface IWritable
 {
     void WriteData(string data);
-    bool CanWrite { get; }
 }
 
 // Класс FileManager, реализующий оба интерфейса
 public class FileManager : IReadable, IWritable
 {
-    private string _filePath;
-    private string _content;
-
-    public bool CanRead => true;
-    public bool CanWrite => true;
-
-    public FileManager(string filePath)
-    {
-        _filePath = filePath;
-        _content = "";
-    }
+    private string _content = "";
 
     public string ReadData()
     {
-        if (string.IsNullOrEmpty(_content))
-        {
-            return $"No data in file {_filePath}";
-        }
-        return $"Reading from {_filePath}: {_content}";
+        return $"Чтение данных: {_content}";
     }
 
     public void WriteData(string data)
     {
         _content = data;
-        Console.WriteLine($"Written to {_filePath}: {data}");
-    }
-
-    public void DisplayFileInfo()
-    {
-        Console.WriteLine($"File: {_filePath}");
-        Console.WriteLine($"Can read: {CanRead}, Can write: {CanWrite}");
-        Console.WriteLine($"Content: {_content}");
+        Console.WriteLine($"Запись данных: {data}");
     }
 }
 
-// Класс ReadOnlyFile, реализующий только IReadable
-public class ReadOnlyFile : IReadable
-{
-    private string _filePath;
-    private string _content;
-
-    public bool CanRead => true;
-
-    public ReadOnlyFile(string filePath, string content)
-    {
-        _filePath = filePath;
-        _content = content;
-    }
-
-    public string ReadData()
-    {
-        return $"Reading from read-only file {_filePath}: {_content}";
-    }
-}
-
+// 5. Интерфейс как параметр метода - ILogger
 public interface ILogger
 {
     void Log(string message);
-    void LogError(string error);
-    void LogWarning(string warning);
-    string LoggerName { get; }
 }
 
 // Консольный логгер
 public class ConsoleLogger : ILogger
 {
-    public string LoggerName => "Console Logger";
-
     public void Log(string message)
     {
-        Console.WriteLine($"[INFO] {DateTime.Now:HH:mm:ss}: {message}");
-    }
-
-    public void LogError(string error)
-    {
-        Console.ForegroundColor = ConsoleColor.Red;
-        Console.WriteLine($"[ERROR] {DateTime.Now:HH:mm:ss}: {error}");
-        Console.ResetColor();
-    }
-
-    public void LogWarning(string warning)
-    {
-        Console.ForegroundColor = ConsoleColor.Yellow;
-        Console.WriteLine($"[WARNING] {DateTime.Now:HH:mm:ss}: {warning}");
-        Console.ResetColor();
+        Console.WriteLine($"[КОНСОЛЬ] {message}");
     }
 }
 
 // Файловый логгер
 public class FileLogger : ILogger
 {
-    public string LoggerName => "File Logger";
-    private string _filePath;
-
-    public FileLogger(string filePath)
-    {
-        _filePath = filePath;
-    }
-
     public void Log(string message)
     {
-        string logEntry = $"[INFO] {DateTime.Now:yyyy-MM-dd HH:mm:ss}: {message}";
-        WriteToFile(logEntry);
-    }
-
-    public void LogError(string error)
-    {
-        string logEntry = $"[ERROR] {DateTime.Now:yyyy-MM-dd HH:mm:ss}: {error}";
-        WriteToFile(logEntry);
-    }
-
-    public void LogWarning(string warning)
-    {
-        string logEntry = $"[WARNING] {DateTime.Now:yyyy-MM-dd HH:mm:ss}: {warning}";
-        WriteToFile(logEntry);
-    }
-
-    private void WriteToFile(string message)
-    {
-        // В реальном приложении здесь была бы запись в файл
-        Console.WriteLine($"(File: {_filePath}) {message}");
+        Console.WriteLine($"[ФАЙЛ] {message}");
     }
 }
 
 // Класс для работы с логгерами
-public class Application
+public class MessageProcessor
 {
-    private ILogger _logger;
-
-    public Application(ILogger logger)
-    {
-        _logger = logger;
-    }
-
-    public void SetLogger(ILogger logger)
-    {
-        _logger = logger;
-    }
-
     // Метод, принимающий интерфейс как параметр
-    public void ProcessData(string data, ILogger processorLogger = null)
+    public void ProcessMessage(string message, ILogger logger)
     {
-        ILogger logger = processorLogger ?? _logger;
-
-        logger.Log($"Starting to process data: {data}");
-
-        // Имитация обработки
-        if (data.Length > 10)
-        {
-            logger.LogWarning("Data length is large, processing might take time");
-        }
-
-        try
-        {
-            // Имитация работы
-            if (string.IsNullOrEmpty(data))
-            {
-                throw new ArgumentException("Data cannot be empty");
-            }
-
-            logger.Log($"Data processed successfully: {data.ToUpper()}");
-        }
-        catch (Exception ex)
-        {
-            logger.LogError($"Error processing data: {ex.Message}");
-        }
-    }
-
-    public static void UseLogger(ILogger logger, string message)
-    {
-        Console.WriteLine($"\nUsing {logger.LoggerName}:");
-        logger.Log(message);
-        logger.LogWarning("This is a warning");
-        logger.LogError("This is an error");
+        logger.Log($"Обработка сообщения: {message}");
     }
 }
 
+// 6. Интерфейс для сортировки - IComparable
 public class Student : IComparable<Student>
 {
     public string Name { get; set; }
-    public int Age { get; set; }
     public double AverageGrade { get; set; }
-    public string Group { get; set; }
 
-    public Student(string name, int age, double averageGrade, string group)
+    public Student(string name, double averageGrade)
     {
         Name = name;
-        Age = age;
         AverageGrade = averageGrade;
-        Group = group;
     }
 
     // Реализация интерфейса IComparable
     public int CompareTo(Student other)
     {
-        if (other == null) return 1;
-
         // Сравнение по среднему баллу (по убыванию)
         return other.AverageGrade.CompareTo(this.AverageGrade);
     }
 
     public override string ToString()
     {
-        return $"{Name} (Age: {Age}, Group: {Group}, Grade: {AverageGrade:F2})";
+        return $"{Name} - {AverageGrade:F1}";
     }
 }
 
-// Дополнительный компаратор для сортировки по имени
-public class StudentNameComparer : IComparer<Student>
-{
-    public int Compare(Student x, Student y)
-    {
-        if (x == null && y == null) return 0;
-        if (x == null) return -1;
-        if (y == null) return 1;
-
-        return string.Compare(x.Name, y.Name);
-    }
-}
-
-// Дополнительный компаратор для сортировки по возрасту
-public class StudentAgeComparer : IComparer<Student>
-{
-    public int Compare(Student x, Student y)
-    {
-        if (x == null && y == null) return 0;
-        if (x == null) return -1;
-        if (y == null) return 1;
-
-        return x.Age.CompareTo(y.Age);
-    }
-}
-
+// 7. Система «Умный дом»
 public interface ISwitchable
 {
     void On();
     void Off();
-    bool IsOn { get; }
-    string DeviceName { get; }
 }
 
-// Интерфейс для регулировки уровня
 public interface IAdjustable
 {
-    void SetLevel(int value);
-    int CurrentLevel { get; }
-    int MinLevel { get; }
-    int MaxLevel { get; }
-}
-
-// Интерфейс для устройств с температурой
-public interface ITemperatureControllable
-{
-    void SetTemperature(int temperature);
-    int CurrentTemperature { get; }
-    int TargetTemperature { get; }
+    void SetLevel(int level);
 }
 
 // Класс Свет
 public class Light : ISwitchable, IAdjustable
 {
-    public string DeviceName { get; private set; }
-    public string Location { get; private set; }
-    public bool IsOn { get; private set; }
-    public int CurrentLevel { get; private set; }
-    public int MinLevel => 0;
-    public int MaxLevel => 100;
-
-    public Light(string location)
-    {
-        DeviceName = "Light";
-        Location = location;
-        IsOn = false;
-        CurrentLevel = 100; // 100% по умолчанию
-    }
+    private bool _isOn = false;
+    private int _brightness = 100;
 
     public void On()
     {
-        if (!IsOn)
-        {
-            IsOn = true;
-            Console.WriteLine($"{Location} light turned ON at {CurrentLevel}% brightness");
-        }
-        else
-        {
-            Console.WriteLine($"{Location} light is already ON");
-        }
+        _isOn = true;
+        Console.WriteLine("Свет включен");
     }
 
     public void Off()
     {
-        if (IsOn)
-        {
-            IsOn = false;
-            Console.WriteLine($"{Location} light turned OFF");
-        }
-        else
-        {
-            Console.WriteLine($"{Location} light is already OFF");
-        }
+        _isOn = false;
+        Console.WriteLine("Свет выключен");
     }
 
-    public void SetLevel(int value)
+    public void SetLevel(int level)
     {
-        if (value < MinLevel || value > MaxLevel)
-        {
-            Console.WriteLine($"Brightness level must be between {MinLevel} and {MaxLevel}");
-            return;
-        }
-
-        CurrentLevel = value;
-        if (IsOn)
-        {
-            Console.WriteLine($"{Location} light brightness set to {CurrentLevel}%");
-        }
-    }
-
-    public void Toggle()
-    {
-        if (IsOn) Off();
-        else On();
+        _brightness = level;
+        Console.WriteLine($"Яркость установлена: {level}%");
     }
 }
 
 // Класс Обогреватель
-public class Heater : ISwitchable, ITemperatureControllable
+public class Heater : ISwitchable
 {
-    public string DeviceName { get; private set; }
-    public string Location { get; private set; }
-    public bool IsOn { get; private set; }
-    public int CurrentTemperature { get; private set; }
-    public int TargetTemperature { get; private set; }
-
-    public Heater(string location)
-    {
-        DeviceName = "Heater";
-        Location = location;
-        IsOn = false;
-        CurrentTemperature = 20; // комнатная температура
-        TargetTemperature = 22;
-    }
+    private bool _isOn = false;
 
     public void On()
     {
-        if (!IsOn)
-        {
-            IsOn = true;
-            Console.WriteLine($"{Location} heater turned ON, target: {TargetTemperature}°C");
-            SimulateHeating();
-        }
-        else
-        {
-            Console.WriteLine($"{Location} heater is already ON");
-        }
+        _isOn = true;
+        Console.WriteLine("Обогреватель включен");
     }
 
     public void Off()
     {
-        if (IsOn)
-        {
-            IsOn = false;
-            Console.WriteLine($"{Location} heater turned OFF");
-        }
-        else
-        {
-            Console.WriteLine($"{Location} heater is already OFF");
-        }
-    }
-
-    public void SetTemperature(int temperature)
-    {
-        if (temperature < 15 || temperature > 30)
-        {
-            Console.WriteLine("Temperature must be between 15°C and 30°C");
-            return;
-        }
-
-        TargetTemperature = temperature;
-        Console.WriteLine($"{Location} heater target temperature set to {TargetTemperature}°C");
-
-        if (IsOn)
-        {
-            SimulateHeating();
-        }
-    }
-
-    private void SimulateHeating()
-    {
-        if (CurrentTemperature < TargetTemperature)
-        {
-            CurrentTemperature = TargetTemperature;
-            Console.WriteLine($"{Location} heater reached target temperature: {CurrentTemperature}°C");
-        }
+        _isOn = false;
+        Console.WriteLine("Обогреватель выключен");
     }
 }
 
 // Класс Кондиционер
-public class AirConditioner : ISwitchable, ITemperatureControllable, IAdjustable
+public class AirConditioner : ISwitchable, IAdjustable
 {
-    public string DeviceName { get; private set; }
-    public string Location { get; private set; }
-    public bool IsOn { get; private set; }
-    public int CurrentTemperature { get; private set; }
-    public int TargetTemperature { get; private set; }
-    public int CurrentLevel { get; private set; } // скорость вентилятора
-    public int MinLevel => 1;
-    public int MaxLevel => 3;
-
-    public AirConditioner(string location)
-    {
-        DeviceName = "Air Conditioner";
-        Location = location;
-        IsOn = false;
-        CurrentTemperature = 25;
-        TargetTemperature = 22;
-        CurrentLevel = 2; // средняя скорость
-    }
+    private bool _isOn = false;
+    private int _temperature = 22;
 
     public void On()
     {
-        if (!IsOn)
-        {
-            IsOn = true;
-            Console.WriteLine($"{Location} AC turned ON, target: {TargetTemperature}°C, fan speed: {CurrentLevel}");
-            SimulateCooling();
-        }
-        else
-        {
-            Console.WriteLine($"{Location} AC is already ON");
-        }
+        _isOn = true;
+        Console.WriteLine("Кондиционер включен");
     }
 
     public void Off()
     {
-        if (IsOn)
-        {
-            IsOn = false;
-            Console.WriteLine($"{Location} AC turned OFF");
-        }
-        else
-        {
-            Console.WriteLine($"{Location} AC is already OFF");
-        }
+        _isOn = false;
+        Console.WriteLine("Кондиционер выключен");
     }
 
-    public void SetTemperature(int temperature)
+    public void SetLevel(int level)
     {
-        if (temperature < 16 || temperature > 30)
-        {
-            Console.WriteLine("Temperature must be between 16°C and 30°C");
-            return;
-        }
-
-        TargetTemperature = temperature;
-        Console.WriteLine($"{Location} AC target temperature set to {TargetTemperature}°C");
-
-        if (IsOn)
-        {
-            SimulateCooling();
-        }
-    }
-
-    public void SetLevel(int value)
-    {
-        if (value < MinLevel || value > MaxLevel)
-        {
-            Console.WriteLine($"Fan speed must be between {MinLevel} and {MaxLevel}");
-            return;
-        }
-
-        CurrentLevel = value;
-        string speed = CurrentLevel == 1 ? "Low" : CurrentLevel == 2 ? "Medium" : "High";
-        Console.WriteLine($"{Location} AC fan speed set to {speed} ({CurrentLevel})");
-    }
-
-    private void SimulateCooling()
-    {
-        if (CurrentTemperature > TargetTemperature)
-        {
-            CurrentTemperature = TargetTemperature;
-            Console.WriteLine($"{Location} AC reached target temperature: {CurrentTemperature}°C");
-        }
+        _temperature = level;
+        Console.WriteLine($"Температура установлена: {level}°C");
     }
 }
 
 // Класс для управления умным домом
 public class SmartHome
 {
-    private List<ISwitchable> _devices;
-
-    public SmartHome()
-    {
-        _devices = new List<ISwitchable>();
-    }
+    private List<ISwitchable> _devices = new List<ISwitchable>();
 
     public void AddDevice(ISwitchable device)
     {
         _devices.Add(device);
-        Console.WriteLine($"Added device: {device.DeviceName}");
     }
 
     public void TurnOnAll()
     {
-        Console.WriteLine("\n=== Turning ON all devices ===");
+        Console.WriteLine("Включаем все устройства:");
         foreach (var device in _devices)
         {
             device.On();
@@ -804,69 +354,90 @@ public class SmartHome
 
     public void TurnOffAll()
     {
-        Console.WriteLine("\n=== Turning OFF all devices ===");
+        Console.WriteLine("Выключаем все устройства:");
         foreach (var device in _devices)
         {
             device.Off();
         }
     }
-
-    public void DisplayStatus()
-    {
-        Console.WriteLine("\n=== Smart Home Status ===");
-        foreach (var device in _devices)
-        {
-            string status = device.IsOn ? "ON" : "OFF";
-            Console.WriteLine($"{device.DeviceName}: {status}");
-
-            // Дополнительная информация для регулируемых устройств
-            if (device is IAdjustable adjustable)
-            {
-                Console.WriteLine($"  Level: {adjustable.CurrentLevel} ({adjustable.MinLevel}-{adjustable.MaxLevel})");
-            }
-
-            // Дополнительная информация для устройств с температурой
-            if (device is ITemperatureControllable tempDevice)
-            {
-                Console.WriteLine($"  Temperature: {tempDevice.CurrentTemperature}°C (Target: {tempDevice.TargetTemperature}°C)");
-            }
-        }
-    }
-
-    public void AdjustDeviceLevel(string deviceName, int level)
-    {
-        var device = _devices.FirstOrDefault(d => d.DeviceName == deviceName);
-        if (device is IAdjustable adjustable)
-        {
-            adjustable.SetLevel(level);
-        }
-        else
-        {
-            Console.WriteLine($"Device {deviceName} is not adjustable");
-        }
-    }
-
-    public void SetDeviceTemperature(string deviceName, int temperature)
-    {
-        var device = _devices.FirstOrDefault(d => d.DeviceName == deviceName);
-        if (device is ITemperatureControllable tempDevice)
-        {
-            tempDevice.SetTemperature(temperature);
-        }
-        else
-        {
-            Console.WriteLine($"Device {deviceName} does not support temperature control");
-        }
-    }
-
-    public List<IAdjustable> GetAdjustableDevices()
-    {
-        return _devices.OfType<IAdjustable>().ToList();
-    }
-
-    public List<ITemperatureControllable> GetTemperatureDevices()
-    {
-        return _devices.OfType<ITemperatureControllable>().ToList();
-    }
 }
 
+class Program
+{
+    static void Main()
+    {
+        Console.WriteLine("=== 1. Простейший интерфейс IAnimal ===");
+        IAnimal dog = new Dog("Бобик", "Овчарка");
+        IAnimal cat = new Cat("Мурка", "Рыжая");
+        dog.Eat();
+        dog.MakeSound();
+        cat.Eat();
+        cat.MakeSound();
+
+        Console.WriteLine("\n=== 2. Интерфейс IDevice ===");
+        IDevice computer = new Computer("Dell");
+        IDevice tv = new TV("Samsung");
+        computer.TurnOn();
+        computer.TurnOff();
+        tv.TurnOn();
+        tv.TurnOff();
+
+        Console.WriteLine("\n=== 3. Интерфейс IMovable с свойствами ===");
+        IMovable car = new Car("Toyota");
+        IMovable bicycle = new Bicycle("Горный");
+        car.Move();
+        car.Stop();
+        bicycle.Move();
+        bicycle.Stop();
+
+        Console.WriteLine("\n=== 4. Множественная реализация интерфейсов ===");
+        FileManager fileManager = new FileManager();
+        fileManager.WriteData("Привет, мир!");
+        Console.WriteLine(fileManager.ReadData());
+
+        Console.WriteLine("\n=== 5. Интерфейс как параметр метода ===");
+        MessageProcessor processor = new MessageProcessor();
+        ILogger consoleLogger = new ConsoleLogger();
+        ILogger fileLogger = new FileLogger();
+        processor.ProcessMessage("Тестовое сообщение", consoleLogger);
+        processor.ProcessMessage("Другое сообщение", fileLogger);
+
+        Console.WriteLine("\n=== 6. Интерфейс для сортировки ===");
+        List<Student> students = new List<Student>
+        {
+            new Student("Анна", 4.5),
+            new Student("Борис", 3.8),
+            new Student("Виктор", 4.2)
+        };
+
+        Console.WriteLine("До сортировки:");
+        foreach (var student in students)
+            Console.WriteLine(student);
+
+        students.Sort();
+
+        Console.WriteLine("После сортировки по оценкам:");
+        foreach (var student in students)
+            Console.WriteLine(student);
+
+        Console.WriteLine("\n=== 7. Система «Умный дом» ===");
+        SmartHome smartHome = new SmartHome();
+        smartHome.AddDevice(new Light());
+        smartHome.AddDevice(new Heater());
+        smartHome.AddDevice(new AirConditioner());
+
+        smartHome.TurnOnAll();
+        Console.WriteLine();
+        smartHome.TurnOffAll();
+
+        // Демонстрация работы с регулируемыми устройствами
+        Console.WriteLine("\nРабота с регулируемыми устройствами:");
+        Light light = new Light();
+        light.On();
+        light.SetLevel(75);
+
+        AirConditioner ac = new AirConditioner();
+        ac.On();
+        ac.SetLevel(20);
+    }
+}
