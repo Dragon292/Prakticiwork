@@ -3,12 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\ajdar\\source\\repos\\Prakticiwork\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{37B2B442-DC6C-4DC1-B745-8D9693B2B673}|22\\22.csproj|c:\\users\\ajdar\\source\\repos\\prakticiwork\\22\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{37B2B442-DC6C-4DC1-B745-8D9693B2B673}|22\\22.csproj|solutionrelative:22\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{38B664F3-5636-466C-9C7D-D31E0389E31F}|23\\23.csproj|c:\\users\\ajdar\\source\\repos\\prakticiwork\\23\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{38B664F3-5636-466C-9C7D-D31E0389E31F}|23\\23.csproj|solutionrelative:23\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{BDFA0643-0AA7-4DBB-A0BE-F8D66D176D1B}|20-21\\20-21.csproj|c:\\users\\ajdar\\source\\repos\\prakticiwork\\20-21\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BDFA0643-0AA7-4DBB-A0BE-F8D66D176D1B}|20-21\\20-21.csproj|solutionrelative:20-21\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{37B2B442-DC6C-4DC1-B745-8D9693B2B673}|22\\22.csproj|c:\\users\\ajdar\\source\\repos\\prakticiwork\\22\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{37B2B442-DC6C-4DC1-B745-8D9693B2B673}|22\\22.csproj|solutionrelative:22\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{FAC2D6A8-7C99-4A7A-83A2-F34092291419}|Prakticiwork\\Prakticiwork.csproj|c:\\users\\ajdar\\source\\repos\\prakticiwork\\prakticiwork\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -52,14 +56,26 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\ajdar\\source\\repos\\Prakticiwork\\23\\Program.cs",
+              "RelativeDocumentMoniker": "23\\Program.cs",
+              "ToolTip": "C:\\Users\\ajdar\\source\\repos\\Prakticiwork\\23\\Program.cs",
+              "RelativeToolTip": "23\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-10T20:10:19.416Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\ajdar\\source\\repos\\Prakticiwork\\22\\Program.cs",
               "RelativeDocumentMoniker": "22\\Program.cs",
               "ToolTip": "C:\\Users\\ajdar\\source\\repos\\Prakticiwork\\22\\Program.cs",
               "RelativeToolTip": "22\\Program.cs",
               "ViewState": "AgIAALIBAAAAAAAAAAAAwNgBAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-06T17:53:17.976Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-06T17:53:17.976Z"
             },
             {
               "$type": "Document",
@@ -69,14 +85,14 @@
               "RelativeDocumentMoniker": "20-21\\Program.cs",
               "ToolTip": "C:\\Users\\ajdar\\source\\repos\\Prakticiwork\\20-21\\Program.cs",
               "RelativeToolTip": "20-21\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACsBAAAnAAAAAAAAAA==",
+              "ViewState": "AgIAACcAAAAAAAAAAAAAACsBAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-06T17:40:38.706Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\ajdar\\source\\repos\\Prakticiwork\\Praktikiwork19\\Program.cs",
               "RelativeDocumentMoniker": "Praktikiwork19\\Program.cs",
@@ -88,7 +104,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\ajdar\\source\\repos\\Prakticiwork\\Praktikiwork18\\Program.cs",
               "RelativeDocumentMoniker": "Praktikiwork18\\Program.cs",
@@ -100,7 +116,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\ajdar\\source\\repos\\Prakticiwork\\Prakticiwork\\Program.cs",
               "RelativeDocumentMoniker": "Prakticiwork\\Program.cs",
@@ -108,8 +124,7 @@
               "RelativeToolTip": "Prakticiwork\\Program.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAA+wAMAAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-22T13:48:59.925Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-22T13:48:59.925Z"
             }
           ]
         }
