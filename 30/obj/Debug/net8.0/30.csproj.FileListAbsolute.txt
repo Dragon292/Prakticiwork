@@ -1,0 +1,14 @@
+C:\Users\ajdar\source\repos\Prakticiwork\30\bin\Debug\net8.0\30.exe
+C:\Users\ajdar\source\repos\Prakticiwork\30\bin\Debug\net8.0\30.deps.json
+C:\Users\ajdar\source\repos\Prakticiwork\30\bin\Debug\net8.0\30.runtimeconfig.json
+C:\Users\ajdar\source\repos\Prakticiwork\30\bin\Debug\net8.0\30.dll
+C:\Users\ajdar\source\repos\Prakticiwork\30\bin\Debug\net8.0\30.pdb
+C:\Users\ajdar\source\repos\Prakticiwork\30\obj\Debug\net8.0\30.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ajdar\source\repos\Prakticiwork\30\obj\Debug\net8.0\30.AssemblyInfoInputs.cache
+C:\Users\ajdar\source\repos\Prakticiwork\30\obj\Debug\net8.0\30.AssemblyInfo.cs
+C:\Users\ajdar\source\repos\Prakticiwork\30\obj\Debug\net8.0\30.csproj.CoreCompileInputs.cache
+C:\Users\ajdar\source\repos\Prakticiwork\30\obj\Debug\net8.0\30.dll
+C:\Users\ajdar\source\repos\Prakticiwork\30\obj\Debug\net8.0\refint\30.dll
+C:\Users\ajdar\source\repos\Prakticiwork\30\obj\Debug\net8.0\30.pdb
+C:\Users\ajdar\source\repos\Prakticiwork\30\obj\Debug\net8.0\30.genruntimeconfig.cache
+C:\Users\ajdar\source\repos\Prakticiwork\30\obj\Debug\net8.0\ref\30.dll

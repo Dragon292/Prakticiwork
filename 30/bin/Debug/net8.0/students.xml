@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<students>
+  <student>
+    <name>Иванов Иван</name>
+    <age>18</age>
+    <group>П-21</group>
+  </student>
+  <student>
+    <name>Петров Петр</name>
+    <age>19</age>
+    <group>П-22</group>
+  </student>
+  <student>
+    <name>Сидорова Анна</name>
+    <age>18</age>
+    <group>П-21</group>
+  </student>
+  <student>
+    <name>Шакиров Айдаор</name>
+    <age>18</age>
+    <group>П-21</group>
+  </student>
+</students>
